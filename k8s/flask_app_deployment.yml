@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-app-deployment-hpa
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask-app
+  template:
+    metadata:
+      labels:
+        app: flask-app
+    spec:
+      containers:
+        - name: flask-app-container
+          image: sridharraokukkala/flask_app_api
+          resources:
+            requests:
+              cpu: 2m
+              memory: 50Mi
+            limits:
+              cpu: 100m
+              memory: 300Mi
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: DEV_DATABASE_URL
+              value: mysql+pymysql://sqluser:sqlpassword@sql-service:3306/iudx
+            - name: FLASK_APP
+              value: bookshop.py

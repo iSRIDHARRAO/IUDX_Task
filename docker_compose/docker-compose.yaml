@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  sql_container:
+    image: mysql:latest
+    container_name: sql_container
+    ports:
+      - 1234:3306
+    volumes:
+      - sql_data:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=iudx
+      - MYSQL_USER=sqluser
+      - MYSQL_PASSWORD=sqlpassword
+      - MYSQL_ROOT_PASSWORD=root
+    networks:
+      - iudx
+
+  flask_app:
+    image: sridharraokukkala/flask_app_api
+    container_name: flask_app
+    depends_on:
+      - sql_container
+    environment:
+      - DEV_DATABASE_URL=mysql+pymysql://sqluser:sqlpassword@sql_container:3306/iudx
+      - FLASK_APP=bookshop.py
+    networks:
+      - iudx
+    ports:
+      - 5000:5000
+
+networks:
+  iudx:
+    driver: bridge
+
+volumes:
+  sql_data:
