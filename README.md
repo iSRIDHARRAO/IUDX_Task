@@ -5,7 +5,6 @@
 git clone https://github.com/iSRIDHARRAO/IUDX_Task.git
 cd IUDX_Task
 ```
-#
 ---
 ### Steps to deploy in docker by using docker adhoc commands
 ```sh
@@ -13,7 +12,7 @@ cd IUDX_Task
  ./run_in_docker.sh
 ``` 
 ##### The bash script will automatically build the image and deploys into Docker.
-#
+
 ---
 ### Steps to deploy in docker using docker-compose
 
@@ -22,7 +21,7 @@ cd docker_compose
 ./build_image.sh
 ```
 ##### The bash script will automatically build the image and deploys into Docker using docker-compose plugin.
-#
+
 ---
 ### Steps to deploy in docker using docker-compose
 
@@ -32,7 +31,7 @@ minikube addons enable metrics-server
 ```
 
 ##### Considering kubectl is already available in the Operating System and considering minikube for k8s cluster.
-#
+
 ```sh
 cd k8s
 kubectl apply -f database_pv.yml
