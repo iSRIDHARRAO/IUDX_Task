@@ -61,7 +61,7 @@ app: sql-app
 ## The approach I used expose the web application in K8s to outside world
 ### I created deployment for the flask_app and exposed the deployment pods which have selector 
 ```sh
-pp: flask-app
+app: flask-app
 ```
 ### so that the service will creates port in the k8s host in this case minikube node which is accessible via networking to the outside world which will be outside of cluster, and by using the minikube ip and the port number we defined in the nodeport ( in this case 30000 I defined ) url format will be like :-  http://minikubeip:30000
 ---
