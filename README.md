@@ -58,10 +58,6 @@ app: sql-app
 ```
 ### with a clusterip, so that the service will acts as hostname for the sql pods and flask can use that service name as host to connect database.
 ---
-## The approach I used to configure the autoscaling 
-### I used hpa which is horizontal pod autoscaler which monitors the health of the Deployment and scales in or scales out pods in the dpeloyment by adding/removing the replica.
-### In this repo I created hpa for the flask-app-deployment, while creating deployment I set cpu metrics to allocate for the pods and limits as well. Based on the resources allocated to pods if it reaches 50% ( as per my configuration ) in terms of CPU utilization hpa scales by adding more replicas.
----
 ## The approach I used expose the web application in K8s to outside world
 ### I created deployment for the flask_app and exposed the deployment pods which have selector 
 ```sh
@@ -69,6 +65,11 @@ pp: flask-app
 ```
 ### so that the service will creates port in the k8s host in this case minikube node which is accessible via networking to the outside world which will be outside of cluster, and by using the minikube ip and the port number we defined in the nodeport ( in this case 30000 I defined ) url format will be like :-  http://minikubeip:30000
 ---
+## The approach I used to configure the autoscaling 
+### I used hpa which is horizontal pod autoscaler which monitors the health of the Deployment and scales in or scales out pods in the dpeloyment by adding/removing the replica.
+### In this repo I created hpa for the flask-app-deployment, while creating deployment I set cpu metrics to allocate for the pods and limits as well. Based on the resources allocated to pods if it reaches 50% ( as per my configuration ) in terms of CPU utilization hpa scales by adding more replicas.
+---
+
 
 #### The apis available for the web app are as follows
 
