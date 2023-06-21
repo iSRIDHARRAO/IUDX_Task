@@ -4,8 +4,6 @@ services:
   sql_container:
     image: mysql:latest
     container_name: sql_container
-    ports:
-      - 1234:3306
     volumes:
       - sql_data:/var/lib/mysql
     environment:
