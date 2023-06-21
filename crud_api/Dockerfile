@@ -12,8 +12,5 @@ COPY . .
 
 # Expose the application port
 EXPOSE 5000
-
-# Set the entry point for the container
-RUN export FLASK_APP=bookshop.py
-
+#set entrypoint for the container
 CMD ["python", "-m", "flask", "run", "--host", "0.0.0.0"]
